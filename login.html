@@ -1,0 +1,56 @@
+	<head>
+        <meta charset="UTF-8" />
+        <title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+				<div id="login" >
+					<form id="loginform"> 
+						<h1>Log in</h1> 
+						<p> 
+							<label for="username"> Your email or username </label>
+							<input id="username" name="username" required="required" type="text" placeholder="myusername"/>
+						</p>
+						<p> 
+							<label for="password"> Your password </label>
+							<input id="password" name="password" required="required" type="password" placeholder="******" /> 
+						</p>
+						
+						<p> 
+							<input type="submit" class="btn btn-primary" value="Login" /> 
+						</p>
+						
+					</form>
+				</div>
+						
+        </div>
+             
+    </body>
+</html>
+
+<script>
+	$(document).ready(function(){
+		$('#loginform').on('submit', function(e){
+			e.preventDefault();
+			var username = $('#username').val()
+			var password = $('#password').val()
+			/* $.post("http://localhost:5000/login", { 
+				username:username, 
+				password: password 
+			}); */
+			$.ajax({
+				url: "http://localhost:5000/loginuser",  
+				method: "post",
+				data : {username:username, password: password},
+				success: function(data) {
+					alert(data.message);
+					window.location="http://localhost:5000/home"
+				}
+			});
+    	});
+	});
+</script>

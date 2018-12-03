@@ -1,0 +1,12 @@
+html
+  head
+    title= title
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  body
+    h1= message
+    
+    h2= postedby
+    
+    for blog in blogs
+        h4 #{blog.title}
+        p #{blog.text}
